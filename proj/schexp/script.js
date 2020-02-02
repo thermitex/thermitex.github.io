@@ -3,7 +3,7 @@ $(document).ready(function () {
 		var content = getCal($("#enrolinfo").val());
 		var filename = genFileName();
 		var exported_schedule = new Blob([content], {
-			type: "text/plain;charset=utf-8"
+			type: "text/calendar;charset=utf-8"
 		});
 		saveAs(exported_schedule, filename);
 	});

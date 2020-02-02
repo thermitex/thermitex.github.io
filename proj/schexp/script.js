@@ -29,8 +29,8 @@ function getCal(enrolinfo) {
 		if (fields[4] == "Approved") {
 			var courseName = fields[2].slice(0, 12);
 			var loc = "MB141";
-			var dtstart = new Date("2020-02-05T10:00:00");
-			var dtend = new Date("2020-02-05T11:00:00");
+			var dtstart = "2/5/2020 10:00 am";
+			var dtend = "2/5/2020 11:00 am";
 			cal.addEvent(courseName, "", loc, dtstart, dtend);
 		}
 	}

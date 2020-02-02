@@ -17,7 +17,7 @@ function genFileName() {
 }
 
 function getCal(enrolinfo) {
-	var cal = ics();
+	var cal = ics("weekly.cal.hku.hk", "thermitex");
 	var entries = enrolinfo.split("\n");
 	for (var i = 0; i < entries.length; i++) {
 		var entry = entries[i];
@@ -213,7 +213,7 @@ var ics = function(uidDomain, prodId) {
 
 			var calendarEvent = [
 				'BEGIN:VEVENT',
-				'UID:' + calendarEvents.length + "@" + uidDomain,
+				'UID:' + new Date().getTime() + calendarEvents.length + "@" + uidDomain,
 				'CLASS:PUBLIC',
 				'DESCRIPTION:' + description,
 				'DTSTAMP;VALUE=DATE-TIME:' + now,
@@ -222,6 +222,7 @@ var ics = function(uidDomain, prodId) {
 				'LOCATION:' + location,
 				'SUMMARY;LANGUAGE=en-us:' + subject,
 				'TRANSP:TRANSPARENT',
+				'SEQUENCE:0'
 				'END:VEVENT'
 			];
 
@@ -255,7 +256,7 @@ var ics = function(uidDomain, prodId) {
 			} else { // ie
 				var bb = new BlobBuilder();
 				bb.append(calendar);
-				blob = bb.getBlob('text/x-vCalendar;charset=' + document.characterSet);
+				blob = bb.getBlob('text/calendar;charset=' + document.characterSet);
 			}
 			saveAs(blob, filename + ext);
 			return calendar;

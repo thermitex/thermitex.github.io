@@ -32,6 +32,7 @@ function getCal(enrolinfo) {
 			var dtstart = "2/5/2020 10:00 am";
 			var dtend = "2/5/2020 11:00 am";
 			cal.addEvent(courseName, "", loc, dtstart, dtend);
+			cal.addEvent("Test", "", loc, "2/6/2020 11:00 am", "2/5/2020 2:00 pm");
 		}
 	}
 	return cal;
@@ -53,7 +54,8 @@ var ics = function(uidDomain, prodId) {
 	var calendarStart = [
 		'BEGIN:VCALENDAR',
 		'PRODID:' + prodId,
-		'VERSION:2.0'
+		'VERSION:2.0',
+		'X-WR-CALNAME:HKU Weekly Schedule'
 	].join(SEPARATOR);
 	var calendarEnd = SEPARATOR + 'END:VCALENDAR';
 	var BYDAY_VALUES = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];

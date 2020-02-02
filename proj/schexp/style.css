@@ -52,6 +52,11 @@ textarea {
     transform: translate(-50%, -50%);
 }
 
+#options {
+    margin-top: 15px;
+    font-size: 8pt;
+}
+
 @font-face {
     font-family: 'tf';
     src: url("../../src/title_font.ttf");

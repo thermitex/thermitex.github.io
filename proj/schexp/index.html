@@ -4,15 +4,21 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="script.js"></script>
 		<title>HKU Weekly Schedule Export Tool</title>
 	</head>
 	<body>
 	<div id="mainblock">
 		<h1>HKU Weekly Schedule Export Tool</h1>
-		<h4>Alpha 0.0.1 By <a id="thermitex" href="https://thermitex.github.io">THERMITEX</a></h4>
-			<p><br>Paste your enrollment status here:</p>
-			<textarea type="text"></textarea>
-		<button type="button">Export to ICS</button>
+		<h4>Alpha 0.0.2 By <a id="thermitex" href="https://thermitex.github.io">THERMITEX</a></h4>
+		<p><br>Paste your enrollment status here:</p>
+		<textarea type="text" id="enrolinfo"></textarea>
+		<div id="options">
+			<label><input name="Fruit" type="checkbox" value="" />Repeat Weekly Until </label>
+			<input id="untildate" type="date" value=""/>
+		</div>
+		<button type="button">Export</button>
 	</div>
 	</body>
 </html>

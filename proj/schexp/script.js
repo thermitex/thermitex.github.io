@@ -222,7 +222,7 @@ var ics = function(uidDomain, prodId) {
 				'LOCATION:' + location,
 				'SUMMARY;LANGUAGE=en-us:' + subject,
 				'TRANSP:TRANSPARENT',
-				'SEQUENCE:0'
+				'SEQUENCE:0',
 				'END:VEVENT'
 			];
 

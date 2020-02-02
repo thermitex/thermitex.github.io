@@ -32,7 +32,7 @@ function getCal(enrolinfo) {
 			var dtstart = "2/5/2020 10:00 am";
 			var dtend = "2/5/2020 11:00 am";
 			cal.addEvent(courseName, "", loc, dtstart, dtend);
-			cal.addEvent("Test", "", loc, "2/6/2020 11:00 am", "2/5/2020 2:00 pm");
+			cal.addEvent("Test", "", loc, "2/6/2020 11:00 am", "2/6/2020 2:00 pm");
 		}
 	}
 	return cal;

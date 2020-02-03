@@ -5,7 +5,7 @@ $(document).ready(function () {
 	var today = now.getFullYear() + "-" + month + "-" + day ;
 	$("#untildate").val(today);
 	$("button").click(function () {
-		var cal = getCal($("#enrolinfo").val());
+		var cal = getCal($("#enrolinfo").val(), $("#rpt").is(":checked"), $("#untildate").val());
 		cal.download(genFileName());
 	});
 });
@@ -21,7 +21,7 @@ function genFileName() {
 	return "export-" + year + month + date + hour + min + sec;
 }
 
-function getCal(enrolinfo) {
+function getCal(enrolinfo, isRepeat, untilDate) {
 	var cal = ics("weekly.cal.hku.hk", "thermitex");
 	var entries = enrolinfo.split("\n");
 	for (var i = 0; i < entries.length; i++) {
@@ -33,13 +33,13 @@ function getCal(enrolinfo) {
 		}
 		if (fields[4] == "Approved") {
 			var courseName = fields[2].slice(0, 12);
-			cal = getEvent(cal, fields[3], courseName);
+			cal = getEvent(cal, fields[3], courseName, isRepeat, untilDate);
 		}
 	}
 	return cal;
 }
 
-function getEvent(cal, desp, courseName) {
+function getEvent(cal, desp, courseName, isRepeat, untilDate) {
 	var words = desp.split(" ");
 	var timeSniffed = 100;
 	var now = new Date();
@@ -57,7 +57,19 @@ function getEvent(cal, desp, courseName) {
 			count++;
 			if (count > 1) {
 				if (!dtstartCont.includes(dtstart.getTime()) || !dtendCont.includes(dtend.getTime())){
-					cal.addEvent(courseName, "", loc, dtstart, dtend);
+					if (isRepeat) {
+						var rrule = {
+							freq: "WEEKLY",
+							until: untilDate,
+							interval: 1
+						};
+						// rrule.freq = "WEEKLY";
+						// rrule.until = untilDate;
+						// rrule.interval = 1;
+						cal.addEvent(courseName, "", loc, dtstart, dtend, rrule);
+					} else {
+						cal.addEvent(courseName, "", loc, dtstart, dtend);
+					}
 					dtstartCont.push(dtstart.getTime());
 					dtendCont.push(dtend.getTime());
 				}
@@ -251,7 +263,7 @@ var ics = function(uidDomain, prodId) {
 				if (rrule.rrule) {
 					rruleString = rrule.rrule;
 				} else {
-					rruleString = 'rrule:FREQ=' + rrule.freq;
+					rruleString = 'RRULE:FREQ=' + rrule.freq;
 
 					if (rrule.until) {
 						var uDate = new Date(Date.parse(rrule.until)).toISOString();

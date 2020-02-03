@@ -1,4 +1,9 @@
 $(document).ready(function () {
+	var now = new Date();
+	var day = ("0" + now.getDate()).slice(-2);
+	var month = ("0" + (now.getMonth() + 1)).slice(-2);
+	var today = now.getFullYear() + "-" + month + "-" + day ;
+	$("#untildate").val(today);
 	$("button").click(function () {
 		var cal = getCal($("#enrolinfo").val());
 		cal.download(genFileName());
@@ -28,14 +33,72 @@ function getCal(enrolinfo) {
 		}
 		if (fields[4] == "Approved") {
 			var courseName = fields[2].slice(0, 12);
-			var loc = "MB141";
-			var dtstart = "2/5/2020 10:00 am";
-			var dtend = "2/5/2020 11:00 am";
-			cal.addEvent(courseName, "", loc, dtstart, dtend);
-			cal.addEvent("Test", "", loc, "2/6/2020 11:00 am", "2/6/2020 2:00 pm");
+			cal = getEvent(cal, fields[3], courseName);
 		}
 	}
 	return cal;
+}
+
+function getEvent(cal, desp, courseName) {
+	var words = desp.split(" ");
+	var timeSniffed = 100;
+	var now = new Date();
+	var currDay = now.getDay();
+	var destDay, deltaDate;
+	var todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+	var loc = "";
+	var count = 0;
+	var dtstart, dtend;
+	var dtstartCont = [];
+	var dtendCont = [];
+	for (var i = 0; i < words.length; i++) {
+		if (words[i] == "Mo" || words[i] == "Tu" || words[i] == "We"
+		|| words[i] == "Th" || words[i] == "Fr" || words[i] == "Sa") {
+			count++;
+			if (count > 1) {
+				if (!dtstartCont.includes(dtstart.getTime()) || !dtendCont.includes(dtend.getTime())){
+					cal.addEvent(courseName, "", loc, dtstart, dtend);
+					dtstartCont.push(dtstart.getTime());
+					dtendCont.push(dtend.getTime());
+				}
+				loc = "";
+			}
+			timeSniffed = i;
+			switch (words[i]) {
+				case "Mo": destDay = 1; break;
+				case "Tu": destDay = 2; break;
+				case "We": destDay = 3; break;
+				case "Th": destDay = 4; break;
+				case "Fr": destDay = 5; break;
+				case "Sa": destDay = 6; break;
+				default: break;
+			}
+			deltaDate = destDay - currDay;
+			if (deltaDate < 0) deltaDate += 7;
+			dtstart = new Date(todayDate);
+			dtend = new Date(todayDate);
+			dtstart.setDate(dtstart.getDate() + deltaDate);
+			dtend.setDate(dtend.getDate() + deltaDate);
+		} else if (i == timeSniffed + 1) {
+			dtstart = setExactTime(dtstart, words[i]);
+		} else if (i == timeSniffed + 3) {
+			dtend = setExactTime(dtend, words[i]);
+		} else if (i >= timeSniffed + 4) {
+			loc += words[i] + " ";
+		}
+	}
+	return cal;
+}
+
+function setExactTime(dt, str) {
+	var ampm = str.slice(-2);
+	var hours = str.slice(0, -2).split(":");
+	dt.setMinutes(hours[1]);
+	var hr = parseInt(hours[0]);
+	if (ampm == "AM" && hr == 12) hr -= 12;
+	if (ampm == "PM" && hr != 12) hr += 12;
+	dt.setHours(hr);
+	return dt;
 }
 
 var ics = function(uidDomain, prodId) {

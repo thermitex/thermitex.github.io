@@ -28,7 +28,7 @@ function getCal(enrolinfo, isRepeat, untilDate) {
 		var entry = entries[i];
 		var fields = entry.split("\t");
 		if (fields.length != 7) {
-			alert("Corrupted Input!");
+			alert("Invalid Input!");
 			return;
 		}
 		if (fields[4] == "Approved") {
@@ -63,9 +63,6 @@ function getEvent(cal, desp, courseName, isRepeat, untilDate) {
 							until: untilDate,
 							interval: 1
 						};
-						// rrule.freq = "WEEKLY";
-						// rrule.until = untilDate;
-						// rrule.interval = 1;
 						cal.addEvent(courseName, "", loc, dtstart, dtend, rrule);
 					} else {
 						cal.addEvent(courseName, "", loc, dtstart, dtend);
@@ -136,32 +133,15 @@ var ics = function(uidDomain, prodId) {
 	var BYDAY_VALUES = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
 
 	return {
-		/**
-		 * Returns events array
-		 * @return {array} Events
-		 */
 		'events': function() {
 			return calendarEvents;
 		},
 
-		/**
-		 * Returns calendar
-		 * @return {string} Calendar in iCalendar format
-		 */
 		'calendar': function() {
 			return calendarStart + SEPARATOR + calendarEvents.join(SEPARATOR) + calendarEnd;
 		},
 
-		/**
-		 * Add event to the calendar
-		 * @param  {string} subject     Subject/Title of event
-		 * @param  {string} description Description of event
-		 * @param  {string} location    Location of event
-		 * @param  {string} begin       Beginning date of event
-		 * @param  {string} stop        Ending date of event
-		 */
 		'addEvent': function(subject, description, location, begin, stop, rrule) {
-			// I'm not in the mood to make these optional... So they are all required
 			if (typeof subject === 'undefined' ||
 				typeof description === 'undefined' ||
 				typeof location === 'undefined' ||
@@ -337,9 +317,6 @@ var ics = function(uidDomain, prodId) {
 			return calendar;
 		},
 
-		/**
-		 * Build and return the ical contents
-		 */
 		'build': function() {
 			if (calendarEvents.length < 1) {
 				return false;

@@ -15,6 +15,12 @@ a {
     color: white;
 }
 
+.tools {
+    margin: 0 0 0 10px;
+    text-decoration: none;
+    font-size: 10pt;
+}
+
 button {
     margin: 15px 0 0 0;
     font-size: 10pt;

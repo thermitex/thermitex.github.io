@@ -11,6 +11,9 @@ body {
     font-size: 72px;
     text-align: center;
     margin: 0 0 15px;
+    word-break: normal;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 #since {
@@ -40,7 +43,7 @@ a:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 80%8;
+    max-width: 80%;
 }
 
 @font-face {

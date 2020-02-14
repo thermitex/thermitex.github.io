@@ -7,5 +7,5 @@ function getDaysBetween(dateString1,dateString2){
 }
 
 window.onload=function(){
-	document.getElementById("count").innerText = getDaysBetween("2017-08-28 0:00", new Date());
+	document.getElementById("count").innerText = getDaysBetween("28 Aug 2017", new Date());
 }

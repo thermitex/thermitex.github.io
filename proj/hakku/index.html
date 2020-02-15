@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+		<title>HAKKU - HKU Course Planner</title>
+	</head>
+	<body>
+	<div id="main">
+		<div id="config">
+			<div id="config-container">
+				<div id="header" class="config-element">
+					<img src="hakku_logo.png" alt="logo" id="logo">
+					<p class="smaller-text"><span class="reg-text">Data 2019-2020</span><br>0.0.1 Alpha</p>
+				</div>
+				<div id="sem-selector-wrapper" class="config-element">
+					<p id="sem-selector-caption">Choose semester:</p>
+					<ul id="sem-selector">
+						<li id="sem1">Sem 1</li>
+						<li id="sem2">Sem 2</li>
+					</ul>
+				</div>
+				<div id="course-search-widget" class="config-element">
+					<div id="course-search-box">
+						<input type="text" id="course-input" placeholder="Enter Course Code">
+					</div>
+					<div id="course-result-wrapper" style="display: none;">
+						<div id="course-result-view">
+							<ul id="match-list"></ul>
+						</div>
+					</div>
+				</div>
+				<div id="added-course-list">
+				</div>
+<!-- 				<div id="action-button"> -->
+<!-- 					<p id="button-caption">Plan</p> -->
+<!-- 				</div> -->
+			</div>
+		</div>
+		<div id="res">
+			<div id="cal-wrapper">
+				<table id="cal-header">
+					<tbody>
+						<tr class="calendarHeader">
+							<td class="timeGrid">Mon</td>
+							<td class="timeGrid">Tue</td>
+							<td class="timeGrid">Wed</td>
+							<td class="timeGrid">Thu</td>
+							<td class="timeGrid">Fri</td>
+							<td class="timeGrid">Sat</td>
+						</tr>
+					</tbody>
+				</table>
+				<div id="cal-content-wrapper" style="overflow: auto">
+					<table class="cal-Content">
+						<tbody>
+							<tr class="t0 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">8:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t1">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t2">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t3">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t4 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">9:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t5">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t6">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t7">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t8 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">10:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t9">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t10">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t11">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t12 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">11:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t13">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t14">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t15">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t16 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">12:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t17">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t18">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t19">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t20 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">13:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t21">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t22">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t23">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t24 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">14:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t25">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t26">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t27">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t28 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">15:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t29">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t30">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t31">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t32 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">16:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t33">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t34">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t35">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t36 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">17:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t37">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t38">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t39">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t40 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">18:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t41">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t42">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t43">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t44 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">19:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t45">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t46">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t47">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t48 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">20:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t49">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t50">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t51">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t52 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">21:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+							<tr class="t53">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t54">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t55">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr class="t56 line">
+								<td class="timeDisplay" rowspan="4" style="width: 28px;">22:00</td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+								<td class="line" ></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div id="footer">© 2020 hakku.xyz, Project HAKKU - Developed by Li Ruijie - Part of <span style="font-family: 'tf';">THERMITEX</span> projects</div>
+		</div>
+	</div>
+	</body>
+</html>

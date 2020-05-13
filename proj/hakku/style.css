@@ -74,6 +74,7 @@ input {
     color: inherit;
     flex-grow: 2;
     min-height: 10px;
+    overflow: auto;
 }
 
 #action-button {
@@ -188,6 +189,41 @@ table {
 
 .line {
     border-top:1px solid #ddd;
+}
+
+.selectable {
+    cursor: pointer;
+}
+
+.added-course-item {
+    margin: 4px;
+    padding: 5px;
+    border-style: solid;
+    border-color: #ddd;
+    border-width: 1px;
+    display: none;
+}
+
+.added-course-item:hover {
+    background-color: rgb(80, 80, 80);
+}
+
+p.course-p {
+    margin: 0;
+    padding: 0;
+}
+
+.kill-button {
+    float: right;
+}
+
+.kill-text {
+    margin: 0;
+    padding: 0 3px 0 3px;
+    font-family: 'arial';
+    font-size: 9pt;
+    background-color: white;
+    color: rgb(80, 80, 80);
 }
 
 @font-face {

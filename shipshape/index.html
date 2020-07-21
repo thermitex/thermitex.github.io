@@ -2,23 +2,32 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
-		<script src="script.js"></script>
-		<title>HAKKU - HKU Course Planner</title>
+		<link rel="shortcut icon" href="icon.ico">
+		<script src="scripts/jquery-3.3.1.js"></script>
+		<script src="scripts/crypto-js.min.js"></script>
+		<script src="scripts/mainjs.js"></script>
+		<script src="scripts/caljs.js"></script>
+		<title>Shipshape - HKU Course Planner</title>
 	</head>
 	<body>
 	<div id="main">
+		<div class="min-max selectable bold-text" id="min-button"><img id="min-icon" src="icons/whitea.png"></div>
+		<div class="min-max selectable bold-text" id="max-button" style="display: none;"><img id="max-icon" src="icons/whitema.png"></div>
+		<div id="sub-result-wrapper">
+			<div id="sub-result-view">
+			</div>
+		</div>
 		<div id="config">
 			<div id="config-container">
 				<div id="header" class="config-element">
-					<img src="hakku_logo.png" alt="logo" id="logo">
-					<p class="smaller-text"><span class="reg-text">Data 2019-2020</span><br>0.0.1 Alpha</p>
+					<img src="ssp_logo.png" alt="logo" id="logo">
+					<p class="smaller-text lt-text"><span id="logo-text">Shipshape</span><br><span class="reg-text" id="data-sign">Data 2019-2020</span><br>0.7.2 Beta</p>
 				</div>
 				<div id="sem-selector-wrapper" class="config-element">
-					<p id="sem-selector-caption">Choose semester:</p>
+					<p id="sem-selector-caption" class="lt-text">Choose semester:</p>
 					<ul id="sem-selector">
-						<li id="sem1" class="selectable">Sem 1</li>
+						<li id="sem1" class="selectable sem-selected">Sem 1</li>
 						<li id="sem2" class="selectable">Sem 2</li>
 					</ul>
 				</div>
@@ -26,29 +35,38 @@
 					<div id="course-search-box">
 						<input type="text" id="course-input" placeholder="Enter Course Code">
 					</div>
-					<div id="course-result-wrapper" style="display: none;">
+					<div id="course-result-wrapper">
 						<div id="course-result-view">
 							<ul id="match-list"></ul>
 						</div>
 					</div>
 				</div>
 				<div id="added-course-list">
-					<div class="added-course-item">
-						<div class="kill-button selectable">
-							<p class="kill-text"">X</p>
-						</div>
-						<p class="course-name reg-text course-p">COMP2123 Programming Tools and Technology</p>
-						<p class="course-loc course-p">CPD3.14</p>
-						<p class="course-sub course-p">Sub: 2C</p>
-					</div>
 				</div>
 			</div>
 		</div>
 		<div id="res">
+			<div id="toolbar">
+				<ul id="toollist">
+					<%
+						if (token != null) {
+							out.println("<li id=\"quit-ro-button\" class=\"toolbar-button selectable ro-mode\">Quit Preview</li>");
+							out.println("<li id=\"ro-import-button\" class=\"toolbar-button selectable ro-mode\" style=\"margin-right: 5px;\">Save</li>");
+						}
+					%>
+					<li id="export-button" class="toolbar-button selectable">Export</li>
+					<li id="import-button" class="toolbar-button selectable">Import</li>
+					<li id="add-button" class="toolbar-button selectable">Add</li>
+					<li id="clear-button" class="toolbar-button selectable">Clear</li>
+					<li id="about-button" class="toolbar-button selectable">About</li>
+					<li id="donate-button" class="toolbar-button selectable" style="float: right;">Donate to support Shipshape (&#x0E51;>&#x1D17;<)&#x0648;</li>
+				</ul>
+			</div>
 			<div id="cal-wrapper">
 				<table id="cal-header">
 					<tbody>
 						<tr class="calendarHeader">
+							<td class="timeGrid">Sun</td>
 							<td class="timeGrid">Mon</td>
 							<td class="timeGrid">Tue</td>
 							<td class="timeGrid">Wed</td>
@@ -58,17 +76,18 @@
 						</tr>
 					</tbody>
 				</table>
-				<div id="cal-content-wrapper" style="overflow: auto">
+				<div id="cal-content-wrapper">
 					<table class="cal-Content">
 						<tbody>
 							<tr class="t0 line">
 								<td class="timeDisplay" rowspan="4" style="width: 28px;">8:00</td>
-								<td class="line" ></td>
-								<td class="line" ></td>
-								<td class="line" ></td>
-								<td class="line" ></td>
-								<td class="line" ></td>
-								<td class="line" ></td>
+								<td class="line" id="d6"></td>
+								<td class="line" id="d0"></td>
+								<td class="line" id="d1"></td>
+								<td class="line" id="d2"></td>
+								<td class="line" id="d3"></td>
+								<td class="line" id="d4"></td>
+								<td class="line" id="d5"></td>
 							</tr>
 							<tr class="t1">
 								<td></td>
@@ -77,8 +96,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t2">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -102,8 +123,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t5">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -118,8 +141,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t7">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -135,8 +160,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t9">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -151,8 +178,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t11">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -168,8 +197,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t13">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -184,8 +215,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t15">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -201,8 +234,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t17">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -217,8 +252,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t19">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -234,8 +271,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t21">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -250,8 +289,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t23">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -267,8 +308,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t25">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -283,8 +326,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t27">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -300,8 +345,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t29">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -316,8 +363,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t31">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -333,8 +382,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t33">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -349,8 +400,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t35">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -366,8 +419,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t37">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -382,8 +437,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t39">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -399,8 +456,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t41">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -415,8 +474,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t43">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -432,8 +493,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t45">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -448,8 +511,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t47">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -465,8 +530,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t49">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -481,8 +548,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t51">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -498,8 +567,10 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 							<tr class="t53">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -514,8 +585,10 @@
 								<td></td>
 								<td></td>
 								<td></td>
+								<td></td>
 							</tr>
 							<tr class="t55">
+								<td></td>
 								<td></td>
 								<td></td>
 								<td></td>
@@ -531,13 +604,21 @@
 								<td class="line" ></td>
 								<td class="line" ></td>
 								<td class="line" ></td>
+								<td class="line" ></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div id="footer">© 2020 hakku.xyz, Project HAKKU - Developed by Li Ruijie - Part of <span style="font-family: 'tf';">THERMITEX</span> projects</div>
+			<div id="footer">(C) 2020 shipshape.top - Project Shipshape by <a href="https://thermitex.github.io" style="font-family: 'tf';">THERMITEX</span></a>, Data Last Updated 14/05/2020.</div>
 		</div>
+	</div>
+	<div id="dialog-mask"></div>
+	<div id="dialog">
+		<div id="close-dialog-button" class="selectable" style="float: right;">
+			<img src="icons/close.svg">
+		</div>
+		<div id="dialog-content"></div>
 	</div>
 	</body>
 </html>

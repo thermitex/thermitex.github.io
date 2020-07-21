@@ -1,0 +1,734 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: 'mainlt';
+}
+
+#main {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+#config {
+    background-color: black;
+    width: 400px;
+    min-width: 400px;
+    color: white;
+    position: relative;
+}
+
+#res {
+    flex-grow: 2;
+}
+
+#config-container {
+    margin: 50px;
+    margin-bottom: 0;
+    display: flex;
+    height: calc(100% - 100px);
+    flex-direction: column;
+}
+
+#logo {
+    height: 40px;
+}
+
+#logo-text {
+    display: inline-block;
+    font-size: 14pt;
+    font-family: 'inc';
+    margin-bottom: 4px;
+}
+
+a {
+    color: gray;
+}
+
+.smaller-text {
+    font-size: 9pt;
+}
+
+.bold-text {
+    font-family: 'mainbold';
+}
+
+.reg-text {
+    font-family: 'mainreg';
+}
+
+.lt-text {
+    font-family: 'mainlt';
+}
+
+.config-element {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+input#course-input {
+    width: 100%;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 4px;
+    font-size: 11pt;
+    font-family: inherit;
+    padding: 2px 2px;
+    color: inherit;
+    outline: none;
+}
+
+#dialog-content input {
+    font-family: 'mainreg';
+    border: 0.7px solid black;
+}
+
+#event-name,#venue-name {
+    font-size: 11pt;
+    width: 250px;
+    margin-top: 8px;
+}
+
+#aff-course {
+    width: 130px;
+}
+
+#added-course-list {
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+    border-style: solid;
+    border-width: 1.5px;
+    border-radius: 4px;
+    font-size: 10pt;
+    color: inherit;
+    flex-grow: 2;
+    min-height: 10px;
+    overflow: auto;
+}
+
+#action-button {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 4px;
+    height: 30px;
+    font-family: 'mainreg';
+}
+
+#button-caption {
+    margin: 5px;
+}
+
+#header {
+    margin-bottom: 30px;
+}
+
+#cal-wrapper {
+    border-width: 1px;
+    border-color: gray;
+    border-style: solid;
+    margin: 0 20px 20px 20px;
+    height: calc(100% - 95px);
+    padding-bottom: 20px;
+    padding: 10px;
+}
+
+#cal-content-wrapper {
+    margin-top: 0;
+    padding-top: 0;
+    height: calc(100% - 20px);
+    position: relative;
+    overflow: auto;
+}
+
+tr.calendarHeader {
+    height: 20px;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+#cal-header {
+    margin-left: 28px;
+    border-bottom: 3px solid #ddd
+}
+
+tr.calendarHeader td {
+    color: grey;
+    font-family: 'mainreg';
+    width: 1%;
+    border-collapse: collapse;
+}
+
+#footer {
+    margin-left: 20px;
+    padding: 5px;
+    width: calc(100% - 430px);
+    text-align: center;
+    bottom: 0;
+    position: absolute;
+    height: 20px;
+    font-size: 8pt;
+    color: grey;
+}
+
+#toolbar {
+    border: 1px solid gray;
+    border-bottom: none;
+    background-color: rgb(235, 233, 233);
+    font-size: 9pt;
+    font-family: 'mainreg';
+    color: black;
+    margin: 20px 20px 0 20px;
+}
+
+#toollist {
+    padding: 4px;
+    margin: 0;
+    list-style: none;
+}
+
+#toollist li {
+    display: inline-block;
+    padding: 0 5px 0 5px;
+}
+
+#toollist li::before {
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    height: 8pt;
+    width: 8pt;
+    margin-right: 2.5px;
+}
+
+#export-button::before {
+    content: url("icons/export.svg");
+}
+
+#import-button::before {
+    content: url("icons/import.svg");
+}
+
+#about-button::before {
+    content: url("icons/about.svg");
+}
+
+#add-button::before {
+    content: url("icons/add.svg");
+}
+
+#clear-button::before {
+    content: url("icons/clear.svg");
+}
+
+#sem-selector li {
+    list-style: none;
+    padding: 0 10px;
+    margin-right: 15px;
+    float: left;
+    font-size: 9pt;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 4px;
+    font-family: 'mainreg';
+    transition: 0.5s;
+}
+
+.sem-selected {
+    background-color: white;
+    color: black;
+}
+
+.sem-selected.reverse {
+    background-color: black;
+    color: rgb(230, 230, 230);
+    border-color: black;
+}
+
+#sem-selector {
+/*    padding-left: calc(50% - 74px);*/
+    margin-top: 9px;
+    padding: 0;
+}
+
+#sem-selector-caption {
+    font-size: 11pt;
+    margin: 0;
+}
+
+table {
+    font-size: 8pt;
+}
+
+.cal-Content {
+    width: 100%;
+}
+
+.cal-Content td {
+    margin: 0;
+    padding: 0;
+    width: 14%;
+    height: 16px;
+}
+
+.timeDisplay {
+    border-top:1px solid #ddd;
+    color: grey;
+    vertical-align: top;
+    text-align: left;
+    font-family: 'mainlt';
+}
+
+.line {
+    border-top:1px solid #ddd;
+}
+
+.selectable {
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#course-result-wrapper {
+    position: absolute;
+    display: none;
+}
+
+#course-result-view {
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border-radius: 4px;
+    margin-top: 5px;
+    overflow: auto;
+}
+
+#match-list {
+    padding: 6px;
+    font-size: 9pt;
+    font-family: 'mainreg';
+    color: black;
+    list-style: none;
+    margin-top: 0;
+}
+
+.course-result-item {
+    margin-left: 3px;
+    padding: 5px 0 5px 0;
+}
+
+.course-result-item:hover {
+    background-color: lightgray;
+}
+
+.min-max {
+    position: absolute;
+    background-color: black;
+    border-radius: 0 7px 7px 0;
+    padding: 8px 5px 8px 5px;
+    top: calc(50% - 18px);
+}
+
+#min-icon, #max-icon {
+    height: 7pt;
+}
+
+#min-button {
+    left: 388px;
+    z-index: 10;
+}
+
+.delete-cal-button {
+    width: 11pt;
+    opacity: 0.4;
+    transition: 0.3s;
+    margin: 17px 10px 10px 10px;
+}
+
+.delete-cal-button:hover {
+    opacity: 1;
+}
+
+#max-button {
+    left: 0;
+}
+
+#sub-result-wrapper {
+    display: none;
+    position: absolute;
+    z-index: 99;
+    left: 360px;
+}
+
+.transp {
+    opacity: 0.75;
+}
+
+#sub-result-view {
+    width: 300px;
+    height: auto;
+    overflow: auto;
+    background-color: white;
+    border: 0.5px solid black;
+    color: black;
+    font-size: 10pt;
+    padding: 0 10px 0 10px;
+}
+
+#sub-result-view ul {
+    padding: 5px;
+    margin-top: 5px;
+}
+
+#loading-mask {
+    z-index: 100;
+    position: absolute;
+    background-color: gray;
+    opacity: 0.2;
+    font-family: 'mainbold';
+    font-size: 18pt;
+    padding-top: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#dialog-mask {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgb(102, 102, 102);
+    opacity: 0.3;
+    z-index: 101;
+    width: 100%;
+    height: 100%;
+}
+
+#dialog {
+    display: none;
+    border: 1px solid black;
+    color: black;
+    position: absolute;
+    z-index: 102;
+    background-color: white;
+    width: 350px;
+    padding: 20px;
+    font-size: 11pt;
+}
+
+#dialog-content p:first-child {
+    margin-top: 4px;
+    font-size: 12pt;
+}
+
+#close-dialog-button {
+    padding: 2px;
+    height: 12px;
+    width: 12px;
+    opacity: 0.3;
+}
+
+#close-dialog-button:hover {
+    opacity: 1;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+textarea {
+    width: 350px;
+    height: 35px;
+    resize: none;
+    font-size: 9pt;
+    font-family: "Courier";
+    white-space: normal;
+}
+
+#import-text {
+    width: 300px;
+    height: 45px;
+    resize: none;
+    font-size: 9pt;
+    font-family: "Courier";
+    white-space: normal;
+}
+
+.ro-mode {
+    background-color: rgb(39, 39, 39);
+    border-radius: 4px;
+    color: rgb(235, 233, 233);
+    margin-right: 8px;
+}
+
+.toolbar-button.ro-mode:hover {
+    background-color: rgb(73, 73, 73);
+}
+
+.subs {
+    list-style: none;
+    display: inline-block;
+    color: green;
+    padding: 3px;
+    margin-bottom: 4px;
+    border: 1.2px solid green;
+    transition: 0.2s;
+}
+
+.subs.selected {
+    background-color: green;
+    color: white;
+}
+.subs.selected:hover {
+    background-color: green;
+}
+
+.subs.conflict {
+    color: red;
+    border-color: red;
+}
+
+.subs.conflict.selected {
+    background-color: red;
+    color: white;
+}
+
+.subs.conflict.selected:hover {
+    background-color: red;
+}
+
+.subs.conflict:hover {
+    background-color: rgb(255, 239, 239);
+}
+
+.subs:hover {
+    background-color: rgb(217, 238, 217);
+}
+
+.added-course-item {
+    margin: 4px;
+    padding: 5px;
+    border-style: solid;
+    /* border-color: #ddd; */
+    border-width: 1px;
+    /*display: none;*/
+    transition: 0.2s;
+}
+
+.added-course-item:hover {
+    background-color: rgb(80, 80, 80);
+}
+
+.added-course-item.reverse:hover {
+    background-color: rgb(206, 206, 206);
+}
+
+p.course-p {
+    margin: 0;
+    padding: 0;
+}
+
+.kill-button {
+    float: right;
+    display: none;
+}
+
+.kill-text {
+    margin: 0;
+    padding: 0 3px 0 3px;
+    font-family: 'arial';
+    font-size: 9pt;
+    background-color: white;
+    color: rgb(80, 80, 80);
+}
+
+.toolbar-button {
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+}
+
+.toolbar-button:hover {
+    background-color: rgb(206, 206, 206);
+    border-radius: 4px;
+}
+
+.cal-item {
+    position: absolute;
+    background-color: aliceblue;
+    border: 1px solid rgb(16, 32, 83);
+    padding: 0 5px 0 5px;
+    color: black;
+    font-size: 9pt;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.cal-item p {
+    margin: 5px 0 0 0;
+}
+
+.cal-item.hover {
+    background-color: rgb(203, 227, 250);
+}
+
+.cal-item.conf {
+    background-color: rgb(250, 203, 203);
+    border: 1px solid rgb(83, 16, 16);
+    /* opacity: 0.5; */
+}
+
+.cal-item.conf.hover {
+    background-color: rgb(241, 179, 179);
+}
+
+.cal-item.temp {
+    opacity: 0.85;
+    z-index: 98;
+}
+
+.cal-item.origin {
+    opacity: 0.2;
+}
+
+.export-options {
+    display: inline-block;
+    text-align: center;
+    border: 1px solid black;
+    font-size: 10pt;
+    padding: 2px;
+    width: 60px;
+    transition: 0.2s;
+}
+
+.export-option1 {
+    border-radius: 5px 0 0 5px;
+}
+
+.export-option2  {
+    border-radius: 0 5px 5px 0;
+}
+
+.export-option3  {
+    border-left: none;
+    border-right: none;
+}
+
+.export-options.selected {
+    background-color: black;
+    color: white;
+    font-family: 'mainreg';
+}
+
+.dialog-button {
+    display: inline-block;
+    padding: 4px 8px 4px 8px;
+    text-align: center;
+    font-family: 'mainreg';
+    background-color: black;
+    color: white;
+    margin-right: 8px;
+}
+
+.dialog-button.nonemp {
+    display: inline-block;
+    padding: 4px 8px 4px 8px;
+    text-align: center;
+    font-family: 'mainlt';
+    background-color: white;
+    border: 0.8px solid black;
+    color: black;
+}
+
+.dialog-button.unselectable {
+    background-color: rgb(150, 150, 150);
+    cursor: default;
+}
+
+.warning {
+    color: red;
+}
+
+.delete-event-button, .edit-event-button {
+    font-family: 'mainreg';
+}
+
+.delete-event-button p {
+    margin-top: 0;
+    padding-top: 5px;
+}
+
+.delete-event-button:hover, .edit-event-button:hover {
+    padding-left: 15px;
+}
+
+.delete-event-button, .edit-event-button {
+    transition: 0.3s;
+    border-left: 2px solid red;
+    padding-left: 7px;
+    margin-left: 5px;
+}
+
+.edit-event-button p {
+    margin-bottom: 0;
+}
+
+.delete-event-button p::before, .edit-event-button p::before {
+    display: inline-block;
+    height: 10pt;
+    width: 10pt;
+    margin: 0 4px 0 2px;
+    position: relative;
+    top: 2px;
+}
+
+.delete-event-button p::before {
+    content: url('icons/delete.svg');
+}
+
+.edit-event-button p::before { 
+    content: url('icons/edit.svg');
+}
+
+@font-face {
+    font-family: 'tf';
+    src: url("fonts/title_font.ttf");
+}
+
+@font-face {
+    font-family: 'inc';
+    src: url("fonts/inc.ttf");
+}
+
+@font-face {
+    font-family: 'mainlt';
+    src: url("fonts/Aleo-Light.otf");
+}
+
+@font-face {
+    font-family: 'mainreg';
+    src: url("fonts/Aleo-Regular.otf");
+}
+
+@font-face {
+    font-family: 'mainbold';
+    src: url("fonts/Aleo-Bold.otf");
+}

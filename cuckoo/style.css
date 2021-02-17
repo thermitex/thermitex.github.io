@@ -11,6 +11,23 @@ body {
     font-family: 'tf';
 }
 
+#leftblock {
+    float: left;
+    width: 250px;
+    background-color: rgb(82, 109, 254);
+    margin-right: 35px;
+    border-radius: 20px;
+    overflow: hidden;
+    max-height: 470px;
+}
+
+#screenshot {
+    position: relative;
+    width: 300px;
+    top: 40px;
+    left: 50px;
+}
+
 .tools {
     margin: 0 0 0 10px;
     text-decoration: none;
@@ -40,6 +57,8 @@ textarea {
     left: 50%;
     transform: translate(-50%, -50%);
     min-width: 175px;
+    display: flex;
+    flex-direction: row;
 }
 
 #options {
@@ -48,8 +67,11 @@ textarea {
 }
 
 h1 {
-    font-family: 'Work Sans Bold';
     color: rgb(82, 109, 254);
+}
+
+svg path {
+    fill: white !important;
 }
 
 .title-1 {
@@ -58,6 +80,9 @@ h1 {
 
 .title-2 {
     margin-top: 0px;
+}
+
+.font-md {
     font-weight: 500;
 }
 
@@ -89,18 +114,23 @@ li {
 }
 
 footer {
-    font-size: 9pt;
+    font-size: 7.5pt;
     color: gray;
+}
+
+footer a {
+    color: gray;
+}
+
+@media only screen and (max-width: 550px) {
+  #leftblock {
+    display: none;
+  }
 }
 
 @font-face {
     font-family: 'Work Sans';
     src: url("./src/WorkSans.ttf");
-}
-
-@font-face {
-    font-family: 'Work Sans Bold';
-    src: url("./src/WorkSans-Bold.ttf");
 }
 
 @font-face {

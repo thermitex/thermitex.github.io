@@ -21,6 +21,11 @@ body {
     max-height: 470px;
 }
 
+#bodyblock {
+    margin-top: 20px;
+    margin-left: 20px
+}
+
 #screenshot {
     position: relative;
     width: 300px;
@@ -96,6 +101,11 @@ svg path {
     margin: 0;
 }
 
+.sep-3 {
+    height: 30px;
+    margin: 0;
+}
+
 a {
     text-decoration: underline;
     color: rgb(82, 109, 254);
@@ -120,6 +130,19 @@ footer {
 
 footer a {
     color: gray;
+}
+
+details p {
+    margin-top: 8px;
+    font-family: sans-serif;
+    font-size: 10pt;
+    color: lightgray;
+    line-height: 11.5pt;
+}
+
+details {
+    margin: 10px;
+    margin-right: 30px;
 }
 
 @media only screen and (max-width: 550px) {

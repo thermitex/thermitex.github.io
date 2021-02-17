@@ -48,6 +48,7 @@ textarea {
 }
 
 h1 {
+    font-family: 'Work Sans Bold';
     color: rgb(82, 109, 254);
 }
 
@@ -94,7 +95,12 @@ footer {
 
 @font-face {
     font-family: 'Work Sans';
-    src: url("./Work_Sans.ttf");
+    src: url("./src/WorkSans.ttf");
+}
+
+@font-face {
+    font-family: 'Work Sans Bold';
+    src: url("./src/WorkSans-Bold.ttf");
 }
 
 @font-face {

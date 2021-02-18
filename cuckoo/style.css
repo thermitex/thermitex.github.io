@@ -13,12 +13,19 @@ body {
 
 #leftblock {
     float: left;
-    width: 250px;
+    width: 320px;
     background-color: rgb(82, 109, 254);
     margin-right: 35px;
     border-radius: 20px;
     overflow: hidden;
-    max-height: 470px;
+
+    background-image: url('src/sample.png');
+    background-size: 300px auto;
+    background-repeat: no-repeat;
+
+    animation-name: bg-animation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 
 #bodyblock {
@@ -164,12 +171,60 @@ details p {
 
 details {
     margin: 10px;
-    border: none;
+}
+
+summary {
     outline: none;
 }
 
-@media only screen and (max-width: 550px) {
+.slogan {
+    font-size: 10pt;
+    color: lightgray;
+    height: 50px;
+}
+
+.roll-a {
+    animation-name: a-animation;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+}
+
+.roll-b {
+    animation-name: b-animation;
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+}
+
+.abs {
+    position: absolute;
+}
+
+@keyframes bg-animation {
+  0%    {background-position: 80px 30px;}
+  50%   {background-position: 80px 55px;}
+  100%  {background-position: 80px 30px;}
+}
+
+@keyframes a-animation {
+  40%   {opacity: 1;}
+  50%   {opacity: 0;}
+  90%   {opacity: 0;}
+  100%   {opacity: 1;}
+}
+
+@keyframes b-animation {
+  0%   {opacity: 0;}
+  40%   {opacity: 0;}
+  50%   {opacity: 1;}
+  90%   {opacity: 1;}
+  100%   {opacity: 0;}
+}
+
+@media only screen and (max-width: 600px) {
   #leftblock {
+    display: none;
+  }
+  .extra-sep {
     display: none;
   }
 }

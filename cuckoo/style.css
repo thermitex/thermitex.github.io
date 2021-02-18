@@ -22,8 +22,27 @@ body {
 }
 
 #bodyblock {
-    margin-top: 20px;
-    margin-left: 20px
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    max-width: 700px;
+    margin: auto;
+}
+
+#bodyblock p {
+    font-family: sans-serif;
+    font-size: 11pt;
+    line-height: 13pt;
+}
+
+#bodyblock h4 {
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+#backlink {
+    text-decoration: none;
+    font-family: 'Work Sans';
 }
 
 #screenshot {
@@ -142,7 +161,7 @@ details p {
 
 details {
     margin: 10px;
-    margin-right: 30px;
+    border: none;
 }
 
 @media only screen and (max-width: 550px) {

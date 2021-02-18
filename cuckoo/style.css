@@ -33,16 +33,18 @@ body {
     font-family: sans-serif;
     font-size: 11pt;
     line-height: 13pt;
+    font-weight: 200;
 }
 
 #bodyblock h4 {
-    font-weight: 600;
+    font-weight: 500;
     margin-top: 30px;
 }
 
 #backlink {
     text-decoration: none;
     font-family: 'Work Sans';
+    font-weight: normal;
 }
 
 #screenshot {
@@ -130,6 +132,7 @@ a {
     color: rgb(82, 109, 254);
     transition: 0.3s;
     -webkit-transition: 0.3s;
+    outline: none;
 }
 
 ul {
@@ -162,6 +165,7 @@ details p {
 details {
     margin: 10px;
     border: none;
+    outline: none;
 }
 
 @media only screen and (max-width: 550px) {

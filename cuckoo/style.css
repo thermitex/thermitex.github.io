@@ -185,13 +185,13 @@ summary {
 
 .roll-a {
     animation-name: a-animation;
-    animation-duration: 15s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
 }
 
 .roll-b {
     animation-name: b-animation;
-    animation-duration: 15s;
+    animation-duration: 10s;
     animation-iteration-count: infinite;
 }
 
@@ -200,9 +200,9 @@ summary {
 }
 
 @keyframes bg-animation {
-  0%    {background-position: 80px 30px;}
-  50%   {background-position: 80px 55px;}
-  100%  {background-position: 80px 30px;}
+  0%    {background-position: 75px 30px;}
+  50%   {background-position: 75px 55px;}
+  100%  {background-position: 75px 30px;}
 }
 
 @keyframes a-animation {
